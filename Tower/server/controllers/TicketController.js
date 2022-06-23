@@ -12,8 +12,6 @@ export class TicketController extends BaseController{
         this.router
         .use(Auth0Provider.getAuthorizedUserInfo)
         .post('', this.create)
-        .get('/:id', this.getMyTickets)
-        .get('/:id/tickets', this.getTicketsByEvent)
         .delete('/:id', this.removeTicket)
 
     }
@@ -26,19 +24,14 @@ export class TicketController extends BaseController{
             next(error)
         }
     }
-    async getMyTickets(req, res, next) {
+   
+    async removeTicket(req, res, next) {
         try {
-            req.body.accountId = req.userInfo.id 
-            const tickets = await ticketService.getMyTickets(req.params.id)
-            return res.send(tickets)
+            req.body.accountId = req.userInfo.id
+            const ticket = await ticketService.removeTicket(req.params.id, req.userInfo.id)
+            return res.send('Ticket has been deleted')
         } catch (error) {
             next(error)
         }
-    }
-    getTicketsByEvent(arg0, getTicketsByEvent) {
-        throw new Error("Method not implemented.");
-    }
-    removeTicket(arg0, removeTicket) {
-        throw new Error("Method not implemented.");
     }
 }

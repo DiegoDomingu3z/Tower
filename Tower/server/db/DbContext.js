@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import { AccountSchema } from '../models/Account'
+import { CommentSchema } from '../models/Comment';
 import { TicketSchema } from '../models/Ticket';
 import { TowerSchema } from '../models/Tower';
 import { ValueSchema } from '../models/Value'
@@ -11,6 +12,8 @@ class DbContext {
   Tower = mongoose.model('Tower', TowerSchema)
 
   Ticket = mongoose.model('Ticket', TicketSchema)
+
+  Comment = mongoose.model('Comment', CommentSchema)
 }
 
 export const dbContext = new DbContext()

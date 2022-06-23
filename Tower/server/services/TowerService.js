@@ -19,6 +19,10 @@ class TowerService{
 
     async create(towerData) {
         const tower = await dbContext.Tower.create(towerData)
+        let date = new Date()
+        if (tower.startDate < date) {
+            throw new BadRequest()
+        }
         await tower.populate('creator')
         return tower
     }
@@ -28,7 +32,6 @@ class TowerService{
         if (original.creatorId.toString() != update.creatorId) {
             throw new BadRequest('This is not your Event')
         }
-        // FIXME
         if (update.isCancelled == true) {
             throw new BadRequest('This event is already cancelled')
         }
