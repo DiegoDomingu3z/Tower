@@ -32,7 +32,7 @@ class TowerService{
         if (original.creatorId.toString() != update.creatorId) {
             throw new BadRequest('This is not your Event')
         }
-        if (update.isCancelled == true) {
+        if (original.isCanceled == true) {
             throw new BadRequest('This event is already cancelled')
         }
 

@@ -13,7 +13,7 @@ class TicketService{
 
     async create(ticketData) {
         const tickets = await dbContext.Ticket.create(ticketData)
-        await tickets.populate('towerEvent')
+        await tickets.populate('event')
         await tickets.populate('account')
         const event = await dbContext.Tower.findById(tickets.eventId)
         if (event.capacity == 0) {
@@ -29,7 +29,7 @@ class TicketService{
 
     async getMyTickets(id) {
         const tickets = await dbContext.Ticket.find({accountId: id })
-        .populate('towerEvent')
+        .populate('event')
         .populate('account')
         return tickets
         
@@ -37,13 +37,13 @@ class TicketService{
 
     async getEventTickets(id) {
         const tickets = await dbContext.Ticket.find({eventId: id})
-        .populate('towerEvent')
+        .populate('event')
         .populate('account')
         return tickets
     }
 
     async removeTicket(id, userId) {
-        const ticket = await dbContext.Ticket.findById(id).populate('towerEvent')
+        const ticket = await dbContext.Ticket.findById(id).populate('event')
         const event = await dbContext.Tower.findById(ticket.eventId)
         if (ticket.accountId.toString() != userId) {
             throw new Forbidden('You cannot remove because this is not your ticket')
