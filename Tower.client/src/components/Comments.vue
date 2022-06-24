@@ -1,7 +1,7 @@
 <template>
-    <div class="col-12 p-4">
+    <div class="col-md-12 p-4">
         <div class="bg-grey">
-        <div class="text-end">Join the Conversation</div>
+        <div class="text-end p-4">Join the Conversation</div>
         <div class="row text-center p-4">
         <form @submit.prevent="createComment">
             <textarea placeholder="Tell the people..." cols="120" rows="8" v-model="create.body"></textarea>

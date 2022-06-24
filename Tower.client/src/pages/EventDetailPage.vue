@@ -4,6 +4,9 @@
 
     <ActiveTower />
     </div>
+    <div class="row border border-light border-2 p-3">
+        <EventTickets v-for="a in attendees" :key="a.id" :attendee="a" />
+    </div>
     <div class="row">
         <Comments/>
     </div>
@@ -43,7 +46,8 @@ export default {
         return {
             route,
             tower: computed(() => AppState.activeTower),
-            comments: computed(() => AppState.eventComments)
+            comments: computed(() => AppState.eventComments),
+            attendees: computed(() => AppState.tickets)
         }
     }
 }

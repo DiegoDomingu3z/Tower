@@ -2,12 +2,12 @@
   <div class=" container-fluid ">
     
       <div class="row bg-dark">
-        <div class="col-12 d-flex justify-content-around bg-black p-3">
-          <button class="btn text-light" @click="filterEvents = '' " >All</button> 
-          <button class="btn text-light" @click="filterEvents = 'concert' ">Concert</button> 
-          <button class="btn text-light" @click="filterEvents = 'digital' ">Digital</button> 
-          <button class="btn text-light" @click="filterEvents = 'sport' ">Sports</button> 
-          <button class="btn text-light" @click="filterEvents = 'convention' ">Conventions</button> 
+        <div class="col-md-12 d-flex justify-content-around bg-black p-3">
+          <button title="All"  class="btn text-light" @click="filterEvents = '' " >All</button> 
+          <button title="filter concerts" class="btn text-light" @click="filterEvents = 'concert' ">Concert</button> 
+          <button title="filter digitals" class="btn text-light" @click="filterEvents = 'digital' ">Digital</button> 
+          <button title="filter sports" class="btn text-light" @click="filterEvents = 'sport' ">Sports</button> 
+          <button title="filter convention" class="btn text-light" @click="filterEvents = 'convention' ">Conventions</button> 
 
           
         </div>

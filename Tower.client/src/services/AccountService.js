@@ -15,7 +15,14 @@ class AccountService {
   async getMyTickets(){
     const res = await api.get('account/tickets')
     logger.log(res.data)
+    AppState.myTickets = res.data
+    logger.log(AppState.myTickets, '[MY tickets IN APPSTATE]')
     
+  }
+  async deleteTicket(id){
+    const res = await api.delete('api/tickets/' + id)
+    logger.log(res.data)
+    AppState.myTickets = AppState.myTickets.filter(t => t.id != id)
   }
 }
 

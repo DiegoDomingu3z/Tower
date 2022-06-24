@@ -1,12 +1,15 @@
 <template>
-  <div class="row container-fluid">
-    <div><h1>My events</h1></div>
+<div class="container-fluid bg-dark">
 
+  <div class="row">
+    <MyTickets v-for="t in tickets" :key="t.id" :ticket="t"/>
+    
   </div>
+</div>
 </template>
 
 <script>
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, watchEffect } from 'vue'
 import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
 import Pop from '../utils/Pop'
@@ -14,7 +17,7 @@ import { accountService } from '../services/AccountService'
 export default {
   name: 'Account',
   setup() {
-    onMounted(async() => {
+    watchEffect(async() => {
       try {
         await accountService.getMyTickets()
       } catch (error) {
@@ -23,7 +26,8 @@ export default {
       }
     })
     return {
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+      tickets: computed(() => AppState.myTickets)
     }
   }
 }

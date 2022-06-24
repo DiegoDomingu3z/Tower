@@ -21,12 +21,12 @@ class TowerService{
         const res = await api.post('api/events', body)
         logger.log(res.data)
         AppState.towers.unshift(res.data)
+        return res.data
     }
 
     async cancelTower(eventId){
         const res = await api.delete('api/events/' + eventId)
-        AppState.activeTower = res.data
-        logger.log(AppState.activeTower, '[CANCELLING EVENT!]')
+        AppState.activeTower.isCanceled = true
     }
 
    

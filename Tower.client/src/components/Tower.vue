@@ -1,23 +1,26 @@
 <template>
     <div class="p-3 ">
         <div class="events-img elevation-5 border border-dark border-3 selectable" :style="`background-image: url(${tower.coverImg})`" @click="goToTower">
-            <div class="text-base">
-                {{tower.name}}
+            <div class="spicy text-white align-self-baseline p-2">
+
+            <div class="">
+                <b>{{tower.name}}</b>
             </div>
             <div>
-               {{tower.location}}
+               <b>{{tower.location}}</b>
             </div>
             <div>
-                {{new Date(tower.startDate).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}}
+                <b>{{new Date(tower.startDate).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}}</b>
             </div>
             <div v-if="tower.capacity >= 1">
-                Remaining Capacity: {{tower.capacity}}
+                 <b>Remaining Capacity: {{tower.capacity}}</b>
             </div>
-            <div v-if="tower.isCanceled == true" class="text-danger text-center bg-dark">
-                <h4>Cancelled</h4>
+            <div v-if="tower.isCanceled == true" class="text-danger text-center bg-dark ">
+                <h4><b>Cancelled</b></h4>
             </div>
             <div v-else-if="tower.capacity == 0" class="text-danger text-center bg-dark">
-                <h4>Sold Out</h4>
+                <h4><b>Sold Out</b></h4>
+            </div>
             </div>
 
 
@@ -55,4 +58,12 @@ export default {
   background-size: cover;
 }
 
+.spicy{
+    backdrop-filter: blur(20px);
+    
+}
+
+.padding{
+padding-top: 10em;
+}
 </style>

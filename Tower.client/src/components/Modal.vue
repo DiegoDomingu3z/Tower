@@ -1,13 +1,13 @@
 <template>
     <div
-    class="modal fade"
+    class="modal fade half-black"
     tabindex="-1"
     role="dialog"
     aria-labelledby="modelTitleId"
     aria-hidden="true"
   >
     <div class="modal-dialog" role="document">
-      <div class="modal-content bg-grey border-0">
+      <div class="modal-content half-black border-0">
         <div class="modal-header">
           <h5 class="modal-title">
             <slot name="header">
@@ -44,5 +44,11 @@ export default {
 
 
 <style lang="scss" scoped>
+
+
+   .half-black {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
 
 </style>

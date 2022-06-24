@@ -15,7 +15,7 @@ class AttendeeService{
 
         const res = await api.post('api/tickets', ticketData)
         logger.log(res.data,'Created ticket')
-        AppState.myTickets = [...AppState.myTickets, res.data]
+        AppState.tickets = [...AppState.tickets, res.data]
         logger.log(AppState.myTickets, '[APPSTATE myTICKETS]')
 
     }

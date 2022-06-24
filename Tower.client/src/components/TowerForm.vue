@@ -1,43 +1,44 @@
 <template>
 <form @submit.prevent="createEvents">
-  <div class="row">
-    <div class="col-4">
+    <div class="row text-white">
+
+    <div class="col-md-6 pt-3">
         <label for="">Name of Event</label>
-        <input  class="form-control" type="text" placeholder="Name..." v-model="create.name" />
+        <input required class="form-control" type="text" placeholder="Name..." v-model="create.name" />
         </div>
-    <div class="col-4">
+    <div class="col-md-6 pt-3">
         <label for="">Location</label>
-        <input  class="form-control" type="text" placeholder="Location" v-model="create.location" />
+        <input required class="form-control" type="text" placeholder="Location" v-model="create.location" />
     </div>
-    <div class="col-4">
+    <div class="col-md-6 pt-3">
         <label for="">type</label>
-        <input class="form-control" type="text" placeholder="type"  v-model="create.type"/>
+        <input required class="form-control" type="text" placeholder="concert, digital..."  v-model="create.type"/>
     </div>
-    <div class="row"></div>
-    <div class="col-4">
+    <div class="col-md-6 pt-3">
         <label for="">Capacity</label>
-        <input class="form-control" type="text" placeholder="Capacity" v-model="create.capacity" />
+        <input required class="form-control" type="text" placeholder="Capacity" v-model="create.capacity" />
     </div>
-    <div class="col-4">
+    <div class="col-md-6 pt-3">
         <label for="">Date</label>
-        <input class="form-control" type="Date" placeholder="Date" v-model="create.startDate" />
+        <input required class="form-control" type="Date" placeholder="Date" v-model="create.startDate" />
     </div>
-    <div class="col-4">
+    <div class="col-md-6 pt-3">
         <label for="">Image</label>
-        <input class="form-control" type="text" placeholder="Image Url" v-model="create.coverImg" />
+        <input required class="form-control" type="text" placeholder="Image Url" v-model="create.coverImg" />
     </div>
     
-        <div class="col-10">
-            <label for="">Description</label>
-            <textarea placeholder="Description" name="" id="" cols="20" rows="3" v-model="create.description"></textarea>
+        <div class="col-md-10 pt-4">
+           
+            <textarea required placeholder="Description" class="form-control" cols="20" rows="3" v-model="create.description"></textarea>
         </div>
-        <div class="col-12 text-end">
+        <div class="col-md-12 text-end pt-5">
         
        <button class="btn btn-info border-white me-3"  data-bs-dismiss="modal"
             aria-label="Close">Cancel</button>
-           <button type="submit" class="btn btn-dark border-white">Submit</button>
+           <button class="btn btn-dark border-white selectable">Submit</button>
             </div>
-        </div>
+    </div>
+        
     
 </form>
   
@@ -55,19 +56,21 @@ import { AppState } from '../AppState'
 export default {
 
   setup() {
+    const route = useRouter()
     const create = ref({})
             return {
         create,
       async createEvents() {
         try {
-          const newTower = await towerService.createEvents(create.value)
+        const event = await towerService.createEvents(create.value)
           create.value = {},
           Modal.getOrCreateInstance(document.getElementById('create-event')).toggle()
+            route.push({name: 'Tower', params: {id: event.id} })
           
           Pop.toast('Event Created!')
         } catch (error) {
             logger.log(error)
-          Pop.toast("You can't create an event with a past date")
+          Pop.toast(error)
         }
       }
     }

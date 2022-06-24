@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
-    <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
+    <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }" title="Main Page">
       TOWER
     </router-link>
     <button
