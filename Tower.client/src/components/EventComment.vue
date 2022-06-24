@@ -8,10 +8,10 @@
        <img title="" class="img-fluid bg-img" :src="comments.creator.picture" alt="">
         </div>
     </div>
-        <div class="col-md-10 pt-1">
+        <div class="col-md-10 pt-1 ">
             <div> <span>{{comments.creator.name}}</span>  
             <span v-if="comments.isAttending == true" class=""><i class="mdi mdi-check"></i></span> 
-            <span title="Delete Comment" v-if="comments.creatorId == account.id"> <i class="mdi mdi-trash-can selectable" @click="deleteComment"></i></span>
+            <span  class="p-3" title="Delete Comment" v-if="comments.creatorId == account.id"> <i class="mdi mdi-trash-can selectable" @click="deleteComment"></i></span>
             </div>
             <div class="pt-5">{{comments.body}}</div>
         </div>

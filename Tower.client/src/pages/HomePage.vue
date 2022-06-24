@@ -13,7 +13,7 @@
         </div>
         
 
-      <Tower v-for="t in tower" :key="t.id" :tower="t" class="col-3"/>
+      <Tower v-for="t in tower" :key="t.id" :tower="t" class="col-md-3"/>
       </div>
     
   </div>
