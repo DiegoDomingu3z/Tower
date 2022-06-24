@@ -8,10 +8,16 @@
                {{tower.location}}
             </div>
             <div>
-                {{tower.startDate}}
+                {{new Date(tower.startDate).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}}
             </div>
-            <div>
+            <div v-if="tower.capacity >= 1">
                 Remaining Capacity: {{tower.capacity}}
+            </div>
+            <div v-if="tower.isCanceled == true" class="text-danger text-center bg-dark">
+                <h4>Cancelled</h4>
+            </div>
+            <div v-else-if="tower.capacity == 0" class="text-danger text-center bg-dark">
+                <h4>Sold Out</h4>
             </div>
 
 
@@ -30,9 +36,10 @@ export default {
             goToTower(){
                 router.push({
                     name: "Tower",
-                    params: {id: props.tower.creatorId}
+                    params: { id: props.tower.id }
                 })
             }
+            
         }
     }
 }

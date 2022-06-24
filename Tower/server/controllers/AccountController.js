@@ -14,6 +14,7 @@ export class AccountController extends BaseController {
 
   async getUserAccount(req, res, next) {
     try {
+      req.body.creatorId = req.userInfo.id
       const account = await accountService.getAccount(req.userInfo)
       res.send(account)
     } catch (error) {
@@ -23,6 +24,7 @@ export class AccountController extends BaseController {
 
   async getMyTickets(req,res, next){
     try {
+      req.body.creatorId = req.userInfo.id
       const tickets = await ticketService.getMyTickets(req.userInfo.id)
       return res.send(tickets)
     } catch (error) {
