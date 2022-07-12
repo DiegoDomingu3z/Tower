@@ -1,11 +1,9 @@
 <template>
-<div class="container-fluid bg-dark">
-
-  <div class="row">
-    <MyTickets v-for="t in tickets" :key="t.id" :ticket="t"/>
-    
+  <div class="container-fluid bg-dark">
+    <div class="row">
+      <MyTickets v-for="t in tickets" :key="t.id" :ticket="t" />
+    </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -17,7 +15,7 @@ import { accountService } from '../services/AccountService'
 export default {
   name: 'Account',
   setup() {
-    watchEffect(async() => {
+    watchEffect(async () => {
       try {
         await accountService.getMyTickets()
       } catch (error) {
