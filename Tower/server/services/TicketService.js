@@ -1,5 +1,5 @@
 
-import { Logger } from "sass"
+
 import { dbContext } from "../db/DbContext"
 import { BadRequest, Forbidden } from "../utils/Errors"
 
@@ -7,10 +7,10 @@ import { BadRequest, Forbidden } from "../utils/Errors"
 
 
 
-class TicketService{
-    
-    
-    
+class TicketService {
+
+
+
 
     async create(ticketData) {
         const tickets = await dbContext.Ticket.create(ticketData)
@@ -23,23 +23,23 @@ class TicketService{
         if (event.isCancelled == true) {
             throw new BadRequest('Sorry, this event was Cancelled')
         }
-        event.capacity --
+        event.capacity--
         await event.save()
         return tickets
     }
 
     async getMyTickets(accountId) {
-        const tickets = await dbContext.Ticket.find({accountId})
-        .populate('event')
-        .populate('account', 'name picture')
+        const tickets = await dbContext.Ticket.find({ accountId })
+            .populate('event')
+            .populate('account', 'name picture')
         return tickets
-        
+
     }
 
     async getEventTickets(eventId) {
-        const tickets = await dbContext.Ticket.find({eventId: eventId})
-        .populate('event')
-        .populate('account') 
+        const tickets = await dbContext.Ticket.find({ eventId: eventId })
+            .populate('event')
+            .populate('account')
         return tickets
     }
 
@@ -49,11 +49,11 @@ class TicketService{
         if (ticket.accountId.toString() != userId) {
             throw new Forbidden('You cannot remove because this is not your ticket')
         }
-        event.capacity ++
+        event.capacity++
         await event.save()
         ticket.remove()
     }
-    
+
 
 
 
