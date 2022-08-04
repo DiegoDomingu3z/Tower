@@ -1,7 +1,11 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
-    <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }" title="Main Page">
-      TOWER
+    <router-link
+      class="navbar-brand d-flex"
+      :to="{ name: 'Home' }"
+      title="Main Page"
+    >
+      <h1>Tower</h1>
     </router-link>
     <button
       class="navbar-toggler"
@@ -15,15 +19,18 @@
       <span class="navbar-toggler-icon" />
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto">
-        
-      </ul>
+      <ul class="navbar-nav me-auto"></ul>
       <!-- LOGIN COMPONENT HERE -->
       <Login />
     </div>
-    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#create-event">
-  Create Event
-</button>
+    <button
+      type="button"
+      class="btn btn-info"
+      data-bs-toggle="modal"
+      data-bs-target="#create-event"
+    >
+      Create Event
+    </button>
   </nav>
 </template>
 

@@ -1,5 +1,6 @@
 <template>
   <div class="container-fluid bg-dark">
+    <h3 class="pt-5 ps-5 text">Upcoming Events</h3>
     <div class="row">
       <MyTickets v-for="t in tickets" :key="t.id" :ticket="t" />
     </div>
@@ -34,5 +35,9 @@ export default {
 <style scoped>
 img {
   max-width: 100px;
+}
+
+.text {
+  color: #79e7ab;
 }
 </style>
