@@ -3,18 +3,18 @@ import { BadRequest } from "../utils/Errors"
 
 
 
-class TowerService{
-   
-   
-   async getAll(query = {}) {
+class TowerService {
+
+
+    async getAll(query = {}) {
         const towers = await dbContext.Tower.find(query).populate('creator', 'name picture')
         return towers
-        
+
     }
 
     async getById(id) {
-       const tower = await dbContext.Tower.findById(id).populate('creator', 'name picture')
-       return tower
+        const tower = await dbContext.Tower.findById(id).populate('creator', 'name picture')
+        return tower
     }
 
     async create(towerData) {
@@ -26,6 +26,7 @@ class TowerService{
         await tower.populate('creator')
         return tower
     }
+
 
     async update(id, update) {
         const original = await dbContext.Tower.findById(id).populate('creator')
@@ -57,7 +58,7 @@ class TowerService{
 
     }
 
-    
+
 
 }
 

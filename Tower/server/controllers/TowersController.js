@@ -8,28 +8,28 @@ import BaseController from "../utils/BaseController";
 
 
 
-export class TowersController extends BaseController{
-    constructor(){
+export class TowersController extends BaseController {
+    constructor() {
         super('api/events')
         this.router
-        .get('', this.getAll)
-        .get('/:id', this.getById)
-        .get('/:id/comments', this.getComments)
-        .get('/:id/tickets', this.getEventTickets)
-        .use(Auth0Provider.getAuthorizedUserInfo)
-        .post('', this.create)
-        .put('/:id', this.update)
-        .delete('/:id', this.changeCancelled)
+            .get('', this.getAll)
+            .get('/:id', this.getById)
+            .get('/:id/comments', this.getComments)
+            .get('/:id/tickets', this.getEventTickets)
+            .use(Auth0Provider.getAuthorizedUserInfo)
+            .post('', this.create)
+            .put('/:id', this.update)
+            .delete('/:id', this.changeCancelled)
     }
-   
-    
+
+
     async getAll(req, res, next) {
-       try {
-        const tower = await towerService.getAll()
-        return res.send(tower)
-       } catch (error) {
-        next(error)
-       }
+        try {
+            const tower = await towerService.getAll()
+            return res.send(tower)
+        } catch (error) {
+            next(error)
+        }
     }
 
     async getById(req, res, next) {
@@ -41,7 +41,7 @@ export class TowersController extends BaseController{
         }
     }
 
-    async getEventTickets(req, res, next){
+    async getEventTickets(req, res, next) {
         try {
 
             const tickets = await ticketService.getEventTickets(req.params.id)
@@ -51,7 +51,7 @@ export class TowersController extends BaseController{
         }
     }
 
-    async getComments(req, res, next){
+    async getComments(req, res, next) {
         try {
             const comments = await commentService.getComments(req.params.id)
             return res.send(comments)
@@ -60,6 +60,8 @@ export class TowersController extends BaseController{
         }
     }
 
+
+    // Create
     async create(req, res, next) {
         try {
             req.body.creatorId = req.userInfo.id
@@ -67,22 +69,23 @@ export class TowersController extends BaseController{
             return res.send(tower)
         } catch (error) {
             next(error)
-            
+
         }
     }
 
-    async update(req, res, next){
+    // PUT
+    async update(req, res, next) {
         try {
-            req.body.creatorId = req.userInfo.id 
+            req.body.creatorId = req.userInfo.id
             const tower = await towerService.update(req.params.id, req.body)
             return res.send(tower)
         } catch (error) {
             next(error)
         }
     }
-    
 
-    async changeCancelled(req, res, next){
+    // DELETE
+    async changeCancelled(req, res, next) {
         try {
             await towerService.changeCancelled(req.params.id, req.userInfo.id)
             return res.send('Event is now cancelled')
